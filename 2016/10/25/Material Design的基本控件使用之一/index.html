@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html >
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="Victoria" />
+
+
+
+<meta name="description" content="自从知道了Material Design之后，做的APP界面布局或者控件，都爱用MaterialDesign风格做。本文设计简单的RecyclerView、Toolbar、FloatingAction Button以及Switch Button的使用。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Material Design的基本控件使用（一）">
+<meta property="og:url" content="blog.huangpan.top/2016/10/25/Material Design的基本控件使用之一/index.html">
+<meta property="og:site_name" content="Victoria's Blog">
+<meta property="og:description" content="自从知道了Material Design之后，做的APP界面布局或者控件，都爱用MaterialDesign风格做。本文设计简单的RecyclerView、Toolbar、FloatingAction Button以及Switch Button的使用。">
+<meta property="og:image" content="https://github.com/pearl2015/components/blob/master/RecyclerViewExample/pic/example.gif?raw=true">
+<meta property="og:updated_time" content="2016-10-25T10:10:20.797Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Material Design的基本控件使用（一）">
+<meta name="twitter:description" content="自从知道了Material Design之后，做的APP界面布局或者控件，都爱用MaterialDesign风格做。本文设计简单的RecyclerView、Toolbar、FloatingAction Button以及Switch Button的使用。">
+<meta name="twitter:image" content="https://github.com/pearl2015/components/blob/master/RecyclerViewExample/pic/example.gif?raw=true">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternative" href="/atom.xml" title="Victoria&#39;s Blog" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/img/gaoyuanyuan.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>Material Design的基本控件使用（一） | Victoria&#39;s Blog</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        open_in_new: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: undefined
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/gaoyuanyuan.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">Victoria</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">心有山海 静而无边</p>
+        
+
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="/huangpan2015@outlook.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="#" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-Intent-Filter-Activity/">Android, Intent Filter, Activity</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android，-Material-Design，BufferKnife/">Android， Material Design，BufferKnife</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BLE-低耗蓝牙-，防丢器，IoT，Android/">BLE(低耗蓝牙)，防丢器，IoT，Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BLE、低耗蓝牙、Android/">BLE、低耗蓝牙、Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bmob-API，-android，-云服务/">Bmob API， android， 云服务</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bmob，-android，-云服务/">Bmob， android， 云服务</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MVP/">MVP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Material-Design-android/">Material Design, android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Material-Design，-RecycleView/">Material Design， RecycleView</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/adb-wireless-android/">adb wireless, android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/android，-broadcast/">android， broadcast</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/android，登录，okhttp，sql，PHP，mvp/">android，登录，okhttp，sql，PHP，mvp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/适配器模式，Adapter，-Android/">适配器模式，Adapter， Android</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://huangpan.top/">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">专注于Android开发</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Victoria</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/gaoyuanyuan.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">Victoria</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">心有山海 静而无边</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="/huangpan2015@outlook.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="#" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-Material Design的基本控件使用之一" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/10/25/Material Design的基本控件使用之一/" class="article-date">
+      <time datetime="2016-10-25T07:21:23.000Z" itemprop="datePublished">2016-10-25</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Material Design的基本控件使用（一）
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Material-Design，-RecycleView/">Material Design， RecycleView</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>自从知道了Material Design之后，做的APP界面布局或者控件，都爱用MaterialDesign风格做。本文设计简单的RecyclerView、Toolbar、FloatingAction Button以及<br>Switch Button的使用。</p>
+<a id="more"></a>
+<h2 id="上图"><a href="#上图" class="headerlink" title="上图"></a>上图</h2><p><img src="https://github.com/pearl2015/components/blob/master/RecyclerViewExample/pic/example.gif?raw=true" width="40%" height="40%"></p>
+<h2 id="RecyclerView"><a href="#RecyclerView" class="headerlink" title="RecyclerView"></a>RecyclerView</h2><h3 id="添加依赖"><a href="#添加依赖" class="headerlink" title="添加依赖"></a>添加依赖</h3><p>RecyclerView 位于android.support.v7.widget，如果targeted sdk版本高于22（我的是24）还是多少，就可以不用添加依赖。此步骤可以忽略。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">//for material design</div><div class="line">   compile 'com.android.support:design:24.2.1'</div><div class="line">   compile 'com.android.support:recyclerview-v7:24.2.1'</div></pre></td></tr></table></figure></p>
+<h3 id="搞定布局"><a href="#搞定布局" class="headerlink" title="搞定布局"></a>搞定布局</h3><ol>
+<li><p>activity_main.xml<br>关于添加Recyclerview的部分代码：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">LinearLayout</span></span></div><div class="line">        <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></div><div class="line">        <span class="attr">android:layout_height</span>=<span class="string">"0dp"</span></div><div class="line">        <span class="attr">android:layout_weight</span>=<span class="string">"15"</span>&gt;</div><div class="line">        <span class="tag">&lt;<span class="name">android.support.v7.widget.RecyclerView</span></span></div><div class="line">            <span class="attr">android:id</span>=<span class="string">"@+id/list_rv"</span></div><div class="line">            <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span></div><div class="line">            <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></div><div class="line">            /&gt;</div><div class="line">    <span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>itemlayout.xml<br>在layout文件夹下，新建itemlayout.xml，为list中每个record的视图，代码如下：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0" encoding="utf-8"?&gt;</div><div class="line"><span class="tag">&lt;<span class="name">RelativeLayout</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></div><div class="line">    <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></div><div class="line">    <span class="attr">android:layout_height</span>=<span class="string">"30dp"</span></div><div class="line">    <span class="attr">android:layout_marginLeft</span>=<span class="string">"5dp"</span></div><div class="line">    <span class="attr">android:layout_marginRight</span>=<span class="string">"5dp"</span>&gt;</div><div class="line">    <span class="tag">&lt;<span class="name">TextView</span></span></div><div class="line">        <span class="attr">android:id</span>=<span class="string">"@+id/topic_tv"</span></div><div class="line">        <span class="attr">android:layout_width</span>=<span class="string">"120dp"</span></div><div class="line">        <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span> /&gt;</div><div class="line">    <span class="tag">&lt;<span class="name">TextView</span></span></div><div class="line">        <span class="attr">android:id</span>=<span class="string">"@+id/time_tv"</span></div><div class="line">        <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></div><div class="line">        <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">        <span class="attr">android:layout_toRightOf</span>=<span class="string">"@id/topic_tv"</span></div><div class="line">        <span class="attr">android:layout_marginRight</span>=<span class="string">"30dp"</span></div><div class="line">        <span class="attr">android:layout_centerHorizontal</span>=<span class="string">"true"</span></div><div class="line">        <span class="attr">android:text</span>=<span class="string">"2016/10/21"</span></div><div class="line">        <span class="attr">android:textSize</span>=<span class="string">"13sp"</span>/&gt;</div><div class="line">    <span class="tag">&lt;<span class="name">Button</span></span></div><div class="line">        <span class="attr">android:id</span>=<span class="string">"@+id/del_btn"</span></div><div class="line">        <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></div><div class="line">        <span class="attr">android:layout_height</span>=<span class="string">"18dp"</span></div><div class="line">        <span class="attr">android:layout_toRightOf</span>=<span class="string">"@id/time_tv"</span></div><div class="line">        <span class="attr">android:text</span>=<span class="string">"cancel"</span></div><div class="line">        <span class="attr">android:background</span>=<span class="string">"@drawable/btn_shape"</span></div><div class="line">        <span class="attr">android:textAllCaps</span>=<span class="string">"false"</span>/&gt;</div><div class="line"><span class="tag">&lt;/<span class="name">RelativeLayout</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="bean的创建"><a href="#bean的创建" class="headerlink" title="bean的创建"></a>bean的创建</h3><p>我觉得对于ListView来说，每个record都是一个数据项，Viewholder+itemlayout是数据项的视图表示和显示，而bean类是数据项的数据表示，因此，新建一个bean类：ListUnit.java<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ListUnit</span> <span class="keyword">implements</span> <span class="title">Parcelable</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> String topic;</div><div class="line">    <span class="keyword">private</span> String time;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="title">ListUnit</span><span class="params">(Parcel in)</span> </span>&#123;</div><div class="line">        topic = in.readString();</div><div class="line">        time = in.readString();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ListUnit</span><span class="params">()</span></span>&#123;&#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getTopic</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> topic;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setTopic</span><span class="params">(String topic)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.topic = topic;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getTime</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> time;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setTime</span><span class="params">(String time)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.time = time;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Creator&lt;ListUnit&gt; <span class="title">getCREATOR</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> CREATOR;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> Creator&lt;ListUnit&gt; CREATOR = <span class="keyword">new</span> Creator&lt;ListUnit&gt;() &#123;</div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="function"><span class="keyword">public</span> ListUnit <span class="title">createFromParcel</span><span class="params">(Parcel in)</span> </span>&#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">new</span> ListUnit(in);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="keyword">public</span> ListUnit[] newArray(<span class="keyword">int</span> size) &#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">new</span> ListUnit[size];</div><div class="line">        &#125;</div><div class="line">    &#125;;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">describeContents</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">writeToParcel</span><span class="params">(Parcel dest, <span class="keyword">int</span> flags)</span> </span>&#123;</div><div class="line">        dest.writeString(topic);</div><div class="line">        dest.writeString(time);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>当然，简单一点的话，也不用创建bean类，有时候，如果record只有一个数据项变更，而且是字符串的话，这步就可以省略了。</p>
+<h3 id="新建Adapter-new-class：-NewAdapter"><a href="#新建Adapter-new-class：-NewAdapter" class="headerlink" title="新建Adapter- new class： NewAdapter"></a>新建Adapter- new class： NewAdapter</h3><p>就跟listview的使用一样，Adapter将数据集适配到RecyclerView上,且新的Adapter中使用一个新建的ViewHolder类：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NewAdapter</span> <span class="keyword">extends</span> <span class="title">RecyclerView</span>.<span class="title">Adapter</span>&lt;<span class="title">NewAdapter</span>.<span class="title">NewViewHolder</span>&gt; </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> List&lt;ListUnit&gt; mDatas = <span class="keyword">new</span> ArrayList&lt;&gt;();</div><div class="line">    <span class="keyword">private</span> Context context;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">NewAdapter</span><span class="params">(List&lt;ListUnit&gt; mDatas, Context context)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.mDatas = mDatas;</div><div class="line">        <span class="keyword">this</span>.context = context;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> NewViewHolder <span class="title">onCreateViewHolder</span><span class="params">(ViewGroup parent, <span class="keyword">int</span> viewType)</span> </span>&#123;</div><div class="line">        NewViewHolder holder = <span class="keyword">new</span> NewViewHolder(LayoutInflater.from(context)</div><div class="line">                                .inflate(R.layout.itemlayout,parent,<span class="keyword">false</span>));</div><div class="line">        <span class="keyword">return</span> holder;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onBindViewHolder</span><span class="params">(NewViewHolder holder, <span class="keyword">int</span> position)</span> </span>&#123;</div><div class="line">        <span class="comment">//</span></div><div class="line">            ListUnit temp = mDatas.get(position);</div><div class="line">            holder.topic_tv.setText(temp.getTopic());</div><div class="line">            holder.time_tv.setText(temp.getTime());</div><div class="line"></div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getItemCount</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> mDatas.size();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="class"><span class="keyword">class</span> <span class="title">NewViewHolder</span> <span class="keyword">extends</span> <span class="title">RecyclerView</span>.<span class="title">ViewHolder</span></span>&#123;</div><div class="line"></div><div class="line">        <span class="keyword">private</span> TextView topic_tv;</div><div class="line">        <span class="keyword">private</span> TextView time_tv;</div><div class="line">        <span class="keyword">private</span> Button del_btn;</div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="title">NewViewHolder</span><span class="params">(View itemView)</span> </span>&#123;</div><div class="line">            <span class="keyword">super</span>(itemView);</div><div class="line">             topic_tv = (TextView)itemView.findViewById(R.id.topic_tv);</div><div class="line">            time_tv = (TextView)itemView.findViewById(R.id.time_tv);</div><div class="line">            del_btn = (Button)itemView.findViewById(R.id.del_btn);</div><div class="line"></div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="数据与视图的绑定-适配"><a href="#数据与视图的绑定-适配" class="headerlink" title="数据与视图的绑定/适配"></a>数据与视图的绑定/适配</h3><p>前面的过程已经创建好了视图（layout）和适配器（Adapter），数据也准备好了（ListUnit），最后就是绑定（Adapter）数据到视图上了。</p>
+<ol>
+<li><p>添加成员变量</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">RecyclerView mRecycleView;</div><div class="line"><span class="keyword">private</span> List&lt;ListUnit&gt; mDatas;</div><div class="line"><span class="keyword">private</span> NewAdapter mAdapter;</div></pre></td></tr></table></figure>
+</li>
+<li><p>初始化视图，然后为数据添加适配器</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//recyclerview</span></div><div class="line">mRecycleView = (RecyclerView)findViewById(R.id.list_rv);</div><div class="line">mRecycleView.setLayoutManager(<span class="keyword">new</span> LinearLayoutManager(<span class="keyword">this</span>));</div><div class="line">mAdapter = <span class="keyword">new</span> NewAdapter(mDatas,MainActivity.<span class="keyword">this</span>);</div><div class="line">mRecycleView.setAdapter(mAdapter);</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>##Toolbar<br>Toolbar默认会产生那个三个竖点点的，但是，有时候，我们经常需要添加别的图标在Toolbar上。</p>
+<h3 id="基础的menu设置，就是那三个点点里面的内容：新建menu文件，右键app，新建Android-Recource-File中，选menu-base-toolbar-menu-xml"><a href="#基础的menu设置，就是那三个点点里面的内容：新建menu文件，右键app，新建Android-Recource-File中，选menu-base-toolbar-menu-xml" class="headerlink" title="基础的menu设置，就是那三个点点里面的内容：新建menu文件，右键app，新建Android Recource File中，选menu: base_toolbar_menu.xml"></a>基础的menu设置，就是那三个点点里面的内容：新建menu文件，右键app，新建Android Recource File中，选menu: base_toolbar_menu.xml</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">menu</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">item</span></span></div><div class="line">        <span class="attr">android:id</span>=<span class="string">"@+id/setting_menu"</span></div><div class="line">        <span class="attr">android:title</span>=<span class="string">"setting"</span></div><div class="line">        <span class="attr">android:showAsAction</span>=<span class="string">"never"</span></div><div class="line">        /&gt;</div><div class="line"><span class="tag">&lt;/<span class="name">menu</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>还需要别的直接添加item就可以了</p>
+<h3 id="在main视图中添加toolbar：-activity-main-xml中添加代码："><a href="#在main视图中添加toolbar：-activity-main-xml中添加代码：" class="headerlink" title="在main视图中添加toolbar： activity_main.xml中添加代码："></a>在main视图中添加toolbar： activity_main.xml中添加代码：</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">android.support.v7.widget.Toolbar</span></span></div><div class="line">    <span class="attr">android:id</span>=<span class="string">"@+id/toolbar"</span></div><div class="line">    <span class="attr">android:layout_height</span>=<span class="string">"45dp"</span></div><div class="line">    <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></div><div class="line">    <span class="attr">android:background</span>=<span class="string">"@color/gray"</span></div><div class="line">    <span class="attr">android:layout_gravity</span>=<span class="string">"left"</span></div><div class="line">    &gt;</div><div class="line">    <span class="tag">&lt;<span class="name">TextView</span></span></div><div class="line">        <span class="attr">android:id</span>=<span class="string">"@+id/app_name_tv"</span></div><div class="line">        <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></div><div class="line">        <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">        <span class="attr">android:text</span>=<span class="string">"@string/app_name"</span></div><div class="line">        <span class="attr">android:textSize</span>=<span class="string">"15dp"</span>/&gt;</div><div class="line"><span class="tag">&lt;/<span class="name">android.support.v7.widget.Toolbar</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>这个的toolbar有点单调，继续添加，我添加一个switch button，我是使用的别人的switch button</p>
+<p>###Switch Button</p>
+<ol>
+<li><p>添加依赖</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">//swith button</div><div class="line">  compile 'com.kyleduo.switchbutton:library:1.4.4'</div></pre></td></tr></table></figure>
+</li>
+<li><p>将switch button添加到toolbar：新activity_main.xml:</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">android.support.v7.widget.Toolbar</span></span></div><div class="line">    <span class="attr">android:id</span>=<span class="string">"@+id/toolbar"</span></div><div class="line">    <span class="attr">android:layout_height</span>=<span class="string">"45dp"</span></div><div class="line">    <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></div><div class="line">    <span class="attr">android:background</span>=<span class="string">"@color/gray"</span></div><div class="line">    <span class="attr">android:layout_gravity</span>=<span class="string">"left"</span></div><div class="line">    &gt;</div><div class="line">    <span class="tag">&lt;<span class="name">TextView</span></span></div><div class="line">        <span class="attr">android:id</span>=<span class="string">"@+id/app_name_tv"</span></div><div class="line">        <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></div><div class="line">        <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">        <span class="attr">android:text</span>=<span class="string">"@string/app_name"</span></div><div class="line">        <span class="attr">android:textSize</span>=<span class="string">"15dp"</span>/&gt;</div><div class="line">    <span class="tag">&lt;<span class="name">com.kyleduo.switchbutton.SwitchButton</span></span></div><div class="line">        <span class="attr">android:id</span>=<span class="string">"@+id/switch_btn"</span></div><div class="line">        <span class="attr">style</span>=<span class="string">"@style/SwitchButtonMD"</span></div><div class="line">        <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></div><div class="line">        <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">        <span class="attr">android:layout_marginLeft</span>=<span class="string">"180dp"</span>/&gt;</div><div class="line"><span class="tag">&lt;/<span class="name">android.support.v7.widget.Toolbar</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="Toolbar的实现"><a href="#Toolbar的实现" class="headerlink" title="Toolbar的实现"></a>Toolbar的实现</h3><p>1.添加成员变量<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Toolbar toolbar;</div><div class="line">SwitchButton start_btn;</div></pre></td></tr></table></figure></p>
+<ol>
+<li><p>添加适配器</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//toolbar</span></div><div class="line">       toolbar = (Toolbar)findViewById(R.id.toolbar);</div><div class="line">       toolbar.setTitle(<span class="string">""</span>);</div><div class="line">       setSupportActionBar(toolbar);</div><div class="line"></div><div class="line">       <span class="comment">//switch button</span></div><div class="line">       start_btn = (SwitchButton)findViewById(R.id.switch_btn);</div><div class="line">       start_btn.setOnClickListener(<span class="keyword">this</span>);</div></pre></td></tr></table></figure>
+</li>
+<li><p>为switch button添加响应：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Override</span></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>&#123;</div><div class="line">      <span class="keyword">switch</span> (v.getId())&#123;</div><div class="line">          <span class="keyword">case</span> R.id.switch_btn:</div><div class="line">              <span class="keyword">boolean</span> on = start_btn.isChecked();</div><div class="line">              Toast.makeText(getApplicationContext(),on+<span class="string">""</span>,Toast.LENGTH_SHORT).show();</div><div class="line">              <span class="keyword">break</span>;</div><div class="line">          <span class="keyword">default</span>:</div><div class="line">              <span class="keyword">break</span>;</div><div class="line">      &#125;</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>Toolbar完成～</p>
+<h2 id="Floating-Action-Button"><a href="#Floating-Action-Button" class="headerlink" title="Floating Action Button"></a>Floating Action Button</h2><h3 id="添加依赖-1"><a href="#添加依赖-1" class="headerlink" title="添加依赖"></a>添加依赖</h3><p>。。。前面加的那些依赖就已经满足了。。。</p>
+<h3 id="布局"><a href="#布局" class="headerlink" title="布局"></a>布局</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">android.support.design.widget.FloatingActionButton</span></span></div><div class="line">    <span class="attr">android:id</span>=<span class="string">"@+id/subscribe_fab"</span></div><div class="line">    <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">    <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></div><div class="line">    <span class="attr">android:layout_gravity</span>=<span class="string">"bottom|end"</span></div><div class="line">    <span class="attr">android:layout_margin</span>=<span class="string">"@dimen/fab_margin"</span></div><div class="line">    <span class="attr">android:src</span>=<span class="string">"@android:drawable/ic_input_add"</span></div><div class="line">    <span class="attr">android:elevation</span>=<span class="string">"8dp"</span></div><div class="line">    <span class="attr">android:clickable</span>=<span class="string">"true"</span></div><div class="line">    /&gt;</div></pre></td></tr></table></figure>
+<h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><ol>
+<li><p>添加成员变量</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> FloatingActionButton add_fab;</div></pre></td></tr></table></figure>
+</li>
+<li><p>视图初始化</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">start_btn = (SwitchButton)findViewById(R.id.switch_btn);</div><div class="line">start_btn.setOnClickListener(<span class="keyword">this</span>);</div></pre></td></tr></table></figure>
+</li>
+<li><p>添加响应:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>&#123;</div><div class="line">    <span class="keyword">switch</span> (v.getId())&#123;</div><div class="line">        <span class="keyword">case</span> R.id.switch_btn:</div><div class="line">            <span class="keyword">boolean</span> on = start_btn.isChecked();</div><div class="line">            Toast.makeText(getApplicationContext(),on+<span class="string">""</span>,Toast.LENGTH_SHORT).show();</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        <span class="keyword">case</span> R.id.subscribe_fab:</div><div class="line">            <span class="comment">//click the fab, add a new record to the recyclerview list</span></div><div class="line">            ListUnit newtopic = <span class="keyword">new</span> ListUnit();</div><div class="line">            newtopic.setTopic(<span class="string">"new"</span>);</div><div class="line">            DateFormat df = <span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyy/MM/dd:HH:mm:ss"</span>);</div><div class="line">            String curtime = df.format(<span class="keyword">new</span> Date());</div><div class="line">            newtopic.setTime(curtime);</div><div class="line">            mDatas.add(newtopic);</div><div class="line">            mAdapter.notifyDataSetChanged();</div><div class="line">        <span class="keyword">default</span>:</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>github下载地址：<a href="https://github.com/pearl2015/components.git/RecyclerViewExample" target="_blank" rel="external">https://github.com/pearl2015/components.git/RecyclerViewExample</a></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2016/10/25/Material Design的基本控件使用之一/">Material Design的基本控件使用（一）</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">Victoria</a></p>
+        <p><span>发布时间:</span>2016-10-25, 16:21:23</p>
+        <p><span>最后更新:</span>2016-10-25, 19:10:20</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2016/10/25/Material Design的基本控件使用之一/" title="Material Design的基本控件使用（一）">blog.huangpan.top/2016/10/25/Material Design的基本控件使用之一/</a>
+            <span class="copy-path" data-clipboard-text="原文: blog.huangpan.top/2016/10/25/Material Design的基本控件使用之一/　　作者: Victoria" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2016/09/06/SmartDeviceManager/">
+                    低耗蓝牙设备管家实现过程(一)
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#上图"><span class="toc-number">1.</span> <span class="toc-text">上图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RecyclerView"><span class="toc-number">2.</span> <span class="toc-text">RecyclerView</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#添加依赖"><span class="toc-number">2.1.</span> <span class="toc-text">添加依赖</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#搞定布局"><span class="toc-number">2.2.</span> <span class="toc-text">搞定布局</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#bean的创建"><span class="toc-number">2.3.</span> <span class="toc-text">bean的创建</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#新建Adapter-new-class：-NewAdapter"><span class="toc-number">2.4.</span> <span class="toc-text">新建Adapter- new class： NewAdapter</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据与视图的绑定-适配"><span class="toc-number">2.5.</span> <span class="toc-text">数据与视图的绑定/适配</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#基础的menu设置，就是那三个点点里面的内容：新建menu文件，右键app，新建Android-Recource-File中，选menu-base-toolbar-menu-xml"><span class="toc-number">2.6.</span> <span class="toc-text">基础的menu设置，就是那三个点点里面的内容：新建menu文件，右键app，新建Android Recource File中，选menu: base_toolbar_menu.xml</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#在main视图中添加toolbar：-activity-main-xml中添加代码："><span class="toc-number">2.7.</span> <span class="toc-text">在main视图中添加toolbar： activity_main.xml中添加代码：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Toolbar的实现"><span class="toc-number">2.8.</span> <span class="toc-text">Toolbar的实现</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Floating-Action-Button"><span class="toc-number">3.</span> <span class="toc-text">Floating Action Button</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#添加依赖-1"><span class="toc-number">3.1.</span> <span class="toc-text">添加依赖</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#布局"><span class="toc-number">3.2.</span> <span class="toc-text">布局</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实现"><span class="toc-number">3.3.</span> <span class="toc-text">实现</span></a></li></ol></li></ol>
+</div>
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+</style>
+
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+<script>
+    yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+</script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"Material Design的基本控件使用（一）　| Victoria's Blog　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+      <div class="duoshuo" id="comments">
+    <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="2016/10/25/Material Design的基本控件使用之一/" data-title="Material Design的基本控件使用（一）" data-url="blog.huangpan.top/2016/10/25/Material Design的基本控件使用之一/"></div>
+    <!-- 多说评论框 end -->
+    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:"null"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+    <!-- 多说公共JS代码 end -->
+</div>
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2016/09/06/SmartDeviceManager/" title="下一篇: 低耗蓝牙设备管家实现过程(一)">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/10/25/Material Design的基本控件使用之一/">Material Design的基本控件使用（一）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/06/SmartDeviceManager/">低耗蓝牙设备管家实现过程(一)</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/08/工具类/">Android 经常会用到的小函数</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/08/MaterialDesign使用/">Material Design使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/07/MaterialDesign使用遇到的问题/">Material Design使用中遇到的问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/06/Bmob入门普通函数使用（二）/">Bmob 简单API使用（一）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/28/IntentFilter与Activity/">startActivity和Intent Filter的匹配过程</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/28/adbwireless/">Android adb wireless免root</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/26/谷歌MD风格登录界面/">Material Design实现的美观的登录界面</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/21/适配器模式之AndroidAdapter(一)/">适配器模式之Android Adapter(一)</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/07/Bmob入门（一）sadaf/">Bmob+Android的简单例子</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/07/Bmob入门（一） - 副本/">Bmob+Android的简单例子</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/04/LoginDemo/">MVP模式实现android登录</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/20/antilost3/">android防丢器（三）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/20/antilost2/">android防丢器（二）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/20/antilost1/">android防丢器（一）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/18/1/">MVP的一点理解</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/15/broadcast-and-receiver/">broadcast and receiver</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/09/IoT的第一步/">IoT的第一步</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2016 Victoria
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.0">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >本站到访数: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">本页阅读量: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>
